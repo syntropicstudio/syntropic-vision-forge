@@ -18,7 +18,8 @@ export type Project = {
   title: { cs: string; en: string };
   tag: { cs: string; en: string };
   description: { cs: string; en: string };
-  image?: string;
+  /** Volitelné pole obrázků. První slouží jako náhled na kartě, ostatní jsou dostupné v galerii po rozkliknutí. */
+  images?: string[];
   url?: string;
   year?: string;
 };
