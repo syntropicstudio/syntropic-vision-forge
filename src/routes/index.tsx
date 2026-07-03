@@ -4,7 +4,7 @@ import { I18nProvider, useI18n } from "@/lib/i18n";
 import { Nav } from "@/components/site/Nav";
 import { LogoMark } from "@/components/site/Logo";
 import { Reveal } from "@/components/site/Reveal";
-import { sectionToggles, projects, reviews } from "@/lib/site-config";
+import { sectionToggles, projects, reviews, aboutPeople } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   component: () => (
@@ -15,8 +15,6 @@ export const Route = createFileRoute("/")({
 });
 
 const MAIL = "mailto:syntropicstudio26@gmail.com";
-const MARTIN_ICO = "[DOPLNIT IČO]";
-const LUKAS_ICO = "[DOPLNIT IČO]";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -215,7 +213,7 @@ function Why() {
 }
 
 function About() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   return (
     <section id="about" className="relative py-28 sm:py-36 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
@@ -228,25 +226,30 @@ function About() {
         </Reveal>
 
         <div className="mt-16 grid md:grid-cols-2 gap-4">
-          {[
-            { name: "Martin Páral", role: t("about_martin_role"), bio: t("about_martin_bio"), ico: MARTIN_ICO, initials: "MP" },
-            { name: "Lukáš Kořenek", role: t("about_lukas_role"), bio: t("about_lukas_bio"), ico: LUKAS_ICO, initials: "LK" },
-          ].map((p, i) => (
+          {aboutPeople.map((p, i) => (
             <Reveal key={p.name} delay={i * 100}>
               <div className="card-premium card-premium-hover p-8 h-full">
                 <div className="flex items-center gap-5">
                   <div className="relative">
-                    <div className="h-16 w-16 rounded-full border border-border flex items-center justify-center font-display text-xl text-foreground bg-elevated">
-                      {p.initials}
-                    </div>
+                    {p.photo ? (
+                      <img
+                        src={p.photo}
+                        alt={p.name}
+                        className="h-16 w-16 rounded-full border border-border object-cover"
+                      />
+                    ) : (
+                      <div className="h-16 w-16 rounded-full border border-border flex items-center justify-center font-display text-xl text-foreground bg-elevated">
+                        {p.initials}
+                      </div>
+                    )}
                     <LogoMark className="absolute -bottom-1 -right-1 h-5 w-5 text-foreground bg-background rounded-full p-0.5" />
                   </div>
                   <div>
                     <div className="font-display text-2xl tracking-tight">{p.name}</div>
-                    <div className="text-xs text-muted-foreground mt-1 uppercase tracking-[0.16em]">{p.role}</div>
+                    <div className="text-xs text-muted-foreground mt-1 uppercase tracking-[0.16em]">{p.role[lang]}</div>
                   </div>
                 </div>
-                <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{p.bio}</p>
+                <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{p.bio[lang]}</p>
                 <div className="mt-6 pt-6 border-t border-border flex items-center justify-between text-xs">
                   <span className="text-muted-foreground uppercase tracking-[0.16em]">{t("ico_label")}</span>
                   <span className="font-mono text-foreground/80">{p.ico}</span>
@@ -312,20 +315,15 @@ function Footer() {
             syntropicstudio26@gmail.com
           </a>
         </div>
-        <div className="md:col-span-3">
-          <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Martin Páral</div>
-          <div className="mt-3 text-sm">
-            <span className="text-muted-foreground">{t("ico_label")}: </span>
-            <span className="font-mono text-foreground/80">{MARTIN_ICO}</span>
+        {aboutPeople.map((p) => (
+          <div key={p.name} className="md:col-span-3">
+            <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{p.name}</div>
+            <div className="mt-3 text-sm">
+              <span className="text-muted-foreground">{t("ico_label")}: </span>
+              <span className="font-mono text-foreground/80">{p.ico}</span>
+            </div>
           </div>
-        </div>
-        <div className="md:col-span-3">
-          <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Lukáš Kořenek</div>
-          <div className="mt-3 text-sm">
-            <span className="text-muted-foreground">{t("ico_label")}: </span>
-            <span className="font-mono text-foreground/80">{LUKAS_ICO}</span>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="mx-auto max-w-7xl px-6 mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <span>{t("footer_rights")}</span>
