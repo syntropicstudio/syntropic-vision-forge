@@ -1,4 +1,4 @@
-import logo from "@/assets/syntropic-mark.asset.json";
+const MARK_URL = "/syntropic-mark.png";
 
 export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
@@ -7,8 +7,8 @@ export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
       style={{
         display: "inline-block",
         backgroundColor: "currentColor",
-        WebkitMaskImage: `url(${logo.url})`,
-        maskImage: `url(${logo.url})`,
+        WebkitMaskImage: `url(${MARK_URL})`,
+        maskImage: `url(${MARK_URL})`,
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
         WebkitMaskPosition: "center",
