@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 export type Lang = "cs" | "en";
 
-type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: <K extends keyof typeof dict.cs>(k: K) => (typeof dict.cs)[K] };
+type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: keyof typeof dict.cs) => string };
 
 const dict = {
   cs: {
@@ -144,7 +144,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     if (typeof document !== "undefined") document.documentElement.lang = lang;
   }, [lang]);
   const setLang = (l: Lang) => setLangState(l);
-  const t = (k: keyof typeof dict.cs) => dict[lang][k];
+  const t = (k: keyof typeof dict.cs): string => dict[lang][k];
   return <I18nCtx.Provider value={{ lang, setLang, t }}>{children}</I18nCtx.Provider>;
 }
 
