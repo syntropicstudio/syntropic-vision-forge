@@ -389,7 +389,7 @@ function Projects() {
                   <button
                     type="button"
                     onClick={() => openProject(p.id)}
-                    className="card-premium card-premium-hover p-5 h-full group block text-left w-full"
+                    className="card-premium card-premium-hover p-5 h-full group block text-left w-full cursor-pointer"
                     aria-label={p.title[lang]}
                   >
                     <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-elevated">
