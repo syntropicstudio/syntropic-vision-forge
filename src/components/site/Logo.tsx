@@ -1,4 +1,4 @@
-const MARK_URL = "/syntropic-mark.png";
+const MARK_URL = `${import.meta.env.BASE_URL}syntropic-mark.png`;
 
 export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
