@@ -15,8 +15,6 @@ export const Route = createFileRoute("/")({
 });
 
 const MAIL = "mailto:syntropicstudio26@gmail.com";
-const MARTIN_ICO = "[DOPLNIT IČO]";
-const LUKAS_ICO = "[DOPLNIT IČO]";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -317,20 +315,15 @@ function Footer() {
             syntropicstudio26@gmail.com
           </a>
         </div>
-        <div className="md:col-span-3">
-          <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Martin Páral</div>
-          <div className="mt-3 text-sm">
-            <span className="text-muted-foreground">{t("ico_label")}: </span>
-            <span className="font-mono text-foreground/80">{MARTIN_ICO}</span>
+        {aboutPeople.map((p) => (
+          <div key={p.name} className="md:col-span-3">
+            <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{p.name}</div>
+            <div className="mt-3 text-sm">
+              <span className="text-muted-foreground">{t("ico_label")}: </span>
+              <span className="font-mono text-foreground/80">{p.ico}</span>
+            </div>
           </div>
-        </div>
-        <div className="md:col-span-3">
-          <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Lukáš Kořenek</div>
-          <div className="mt-3 text-sm">
-            <span className="text-muted-foreground">{t("ico_label")}: </span>
-            <span className="font-mono text-foreground/80">{LUKAS_ICO}</span>
-          </div>
-        </div>
+        ))}
       </div>
       <div className="mx-auto max-w-7xl px-6 mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <span>{t("footer_rights")}</span>
