@@ -74,7 +74,7 @@ export function Nav() {
               ))}
             </div>
             <a
-              href="mailto:syntropicstudio26@gmail.com"
+              href="#contact"
               className="hidden sm:inline-flex items-center rounded-full bg-foreground text-background px-4 py-2 text-xs font-medium hover:bg-foreground/90 transition-colors"
             >
               {t("cta_start")}
