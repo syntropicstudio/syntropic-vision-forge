@@ -57,14 +57,6 @@ export const projects: Project[] = [
   },
 ];
 
-// ---- Recenze / Reviews -----------------------------------------------------
-export type Review = {
-  id: string;
-  name: string;
-  role: { cs: string; en: string };
-  quote: { cs: string; en: string };
-  rating?: number; // 1–5
-};
 
 // ---- O nás / About -------------------------------------------------------
 export type AboutPerson = {
