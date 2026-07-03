@@ -3,6 +3,7 @@ import { I18nProvider, useI18n } from "@/lib/i18n";
 import { Nav } from "@/components/site/Nav";
 import { LogoMark } from "@/components/site/Logo";
 import { Reveal } from "@/components/site/Reveal";
+import { sectionToggles, projects, reviews } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   component: () => (
