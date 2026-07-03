@@ -91,16 +91,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Weby, digitální nástroje, aplikace a automatizace na míru. Prémiové technologické studio s lidským přístupem.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "SyntropicStudio" },
+      { property: "og:url", content: "https://syntropic-vision-forge.lovable.app/" },
+      { property: "og:locale", content: "cs_CZ" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "SyntropicStudio — Digitální řešení na míru" },
+      {
+        name: "twitter:description",
+        content:
+          "Weby, digitální nástroje, aplikace a automatizace na míru. Prémiové technologické studio s lidským přístupem.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "canonical", href: "https://syntropic-vision-forge.lovable.app/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "SyntropicStudio",
+          url: "https://syntropic-vision-forge.lovable.app/",
+          logo: "https://syntropic-vision-forge.lovable.app/syntropic-mark.png",
+          email: "syntropicstudio26@gmail.com",
+          description: "Digitální studio tvořící weby, aplikace a automatizace na míru.",
+          founder: [
+            { "@type": "Person", name: "Martin Páral" },
+            { "@type": "Person", name: "Lukáš Kořenek" },
+          ],
+        }),
       },
     ],
   }),
@@ -112,7 +141,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="cs">
       <head>
         <HeadContent />
       </head>
