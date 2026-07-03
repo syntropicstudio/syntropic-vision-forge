@@ -44,9 +44,6 @@ function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px hairline" />
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <Reveal>
-          <Eyebrow>{t("hero_eyebrow")} · SyntropicStudio</Eyebrow>
-        </Reveal>
         <Reveal delay={80}>
           <h1 className="mt-6 font-display text-5xl sm:text-6xl md:text-7xl lg:text-[88px] leading-[0.98] tracking-tight text-gradient max-w-5xl">
             {t("hero_title")}
