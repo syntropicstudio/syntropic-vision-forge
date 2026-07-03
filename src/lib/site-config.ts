@@ -6,8 +6,8 @@
 // ============================================================================
 
 export const sectionToggles = {
-  showProjects: false,
-  showReviews: false,
+  showProjects: true,
+  showReviews: true,
 };
 
 // ---- Projekty / Projects ---------------------------------------------------
