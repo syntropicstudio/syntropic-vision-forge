@@ -26,7 +26,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "sample-1",
-    title: { cs: "Firemní web – Studio Aurora", cs_placeholder: "" as never, en: "Corporate site – Studio Aurora" },
+    title: { cs: "Firemní web – Studio Aurora", en: "Corporate site – Studio Aurora" },
     tag: { cs: "Web na míru", en: "Custom website" },
     description: {
       cs: "Moderní prezentační web pro architektonické studio s důrazem na typografii, prostor a rychlé načítání.",
