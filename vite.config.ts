@@ -9,11 +9,15 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const isGitHubPages = process.env.BUILD_GITHUB_PAGES === "true";
 
 export default defineConfig({
-  vite: isGitHubPages ? { base: "/syntropic-vision-forge/" } : undefined,
-  nitro: isGitHubPages ? { preset: "github-pages" } : undefined,
+  vite: isGitHubPages
+    ? {
+        base: "/syntropic-vision-forge/",
+        build: { outDir: "dist" },
+      }
+    : undefined,
+  nitro: isGitHubPages ? false : undefined,
   tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    ...(isGitHubPages ? { ssr: false } : {}),
   },
 });
