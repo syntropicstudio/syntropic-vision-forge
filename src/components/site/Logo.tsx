@@ -1,4 +1,4 @@
-import logo from "@/assets/syntropic-logo.asset.json";
+import logo from "@/assets/syntropic-mark.asset.json";
 
 export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
   return (
