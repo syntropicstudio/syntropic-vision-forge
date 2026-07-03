@@ -334,6 +334,101 @@ function Footer() {
   );
 }
 
+function Projects() {
+  const { t, lang } = useI18n();
+  return (
+    <section id="projects" className="relative py-28 sm:py-36 border-t border-border">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-5">
+            <Reveal><Eyebrow>{t("projects_eyebrow")}</Eyebrow></Reveal>
+            <Reveal delay={80}>
+              <div className="mt-5"><SectionTitle>{t("projects_title")}</SectionTitle></div>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-6 text-muted-foreground max-w-md leading-relaxed">{t("projects_text")}</p>
+            </Reveal>
+          </div>
+          <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
+            {projects.map((p, i) => (
+              <Reveal key={p.id} delay={i * 80}>
+                <a
+                  href={p.url ?? "#"}
+                  target={p.url ? "_blank" : undefined}
+                  rel={p.url ? "noreferrer" : undefined}
+                  className="card-premium card-premium-hover p-5 h-full group block"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-elevated">
+                    {p.image ? (
+                      <img src={p.image} alt={p.title[lang]} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,hsl(var(--foreground)/0.08),transparent_60%)]">
+                        <LogoMark className="h-16 w-16 text-foreground/40" />
+                      </div>
+                    )}
+                    <span className="absolute top-3 left-3 text-[10px] tracking-[0.2em] uppercase text-muted-foreground bg-background/70 backdrop-blur px-2 py-1 rounded-full border border-border">
+                      {p.tag[lang]}
+                    </span>
+                  </div>
+                  <div className="mt-5 flex items-baseline justify-between gap-4">
+                    <h3 className="font-display text-xl tracking-tight text-foreground">{p.title[lang]}</h3>
+                    {p.year && <span className="text-[10px] tracking-[0.2em] text-muted-foreground">{p.year}</span>}
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description[lang]}</p>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Reviews() {
+  const { t, lang } = useI18n();
+  return (
+    <section id="reviews" className="relative py-28 sm:py-36 border-t border-border">
+      <div className="mx-auto max-w-7xl px-6">
+        <Reveal><Eyebrow>{t("reviews_eyebrow")}</Eyebrow></Reveal>
+        <Reveal delay={80}>
+          <div className="mt-5 max-w-3xl"><SectionTitle>{t("reviews_title")}</SectionTitle></div>
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="mt-6 max-w-xl text-muted-foreground leading-relaxed">{t("reviews_text")}</p>
+        </Reveal>
+        <div className="mt-16 grid md:grid-cols-3 gap-4">
+          {reviews.map((r, i) => (
+            <Reveal key={r.id} delay={i * 100}>
+              <figure className="card-premium card-premium-hover p-7 h-full flex flex-col">
+                <div className="flex items-center gap-1 text-foreground">
+                  {Array.from({ length: r.rating ?? 5 }).map((_, k) => (
+                    <svg key={k} width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l2.9 6.9L22 10l-5.5 4.8L18.2 22 12 18.3 5.8 22l1.7-7.2L2 10l7.1-1.1L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <blockquote className="mt-5 text-foreground/90 leading-relaxed">
+                  „{r.quote[lang]}"
+                </blockquote>
+                <figcaption className="mt-6 pt-6 border-t border-border flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full border border-border flex items-center justify-center font-display text-sm text-foreground bg-elevated">
+                    {r.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
+                  </div>
+                  <div>
+                    <div className="text-sm text-foreground">{r.name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{r.role[lang]}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Page() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -342,6 +437,8 @@ function Page() {
         <Hero />
         <Work />
         <Process />
+        {sectionToggles.showProjects && <Projects />}
+        {sectionToggles.showReviews && <Reviews />}
         <Why />
         <About />
         <Contact />
