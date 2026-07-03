@@ -82,7 +82,18 @@ const dict = {
     nav_work: "What we create",
     nav_process: "Process",
     nav_about: "About us",
+    nav_projects: "Projects",
+    nav_reviews: "Reviews",
     nav_contact: "Contact",
+
+    projects_eyebrow: "Projects",
+    projects_title: "Selected work",
+    projects_text: "A sample of projects we've delivered. Each solution was tailored to the specific needs of the client.",
+    projects_view: "View",
+
+    reviews_eyebrow: "Reviews",
+    reviews_title: "What clients say",
+    reviews_text: "Feedback from companies we've collaborated with.",
     cta_start: "Start with a consultation",
     cta_secondary: "What we create",
 
