@@ -352,12 +352,35 @@ function Projects() {
           <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
             {projects.map((p, i) => (
               <Reveal key={p.id} delay={i * 80}>
-                <a
-                  href={p.url ?? "#"}
-                  target={p.url ? "_blank" : undefined}
-                  rel={p.url ? "noreferrer" : undefined}
-                  className="card-premium card-premium-hover p-5 h-full group block"
-                >
+                {(() => {
+                  const cls = "card-premium card-premium-hover p-5 h-full group block";
+                  const inner = (
+                    <>
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-elevated">
+                        {p.image ? (
+                          <img src={p.image} alt={p.title[lang]} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,hsl(var(--foreground)/0.08),transparent_60%)]">
+                            <LogoMark className="h-16 w-16 text-foreground/40" />
+                          </div>
+                        )}
+                        <span className="absolute top-3 left-3 text-[10px] tracking-[0.2em] uppercase text-muted-foreground bg-background/70 backdrop-blur px-2 py-1 rounded-full border border-border">
+                          {p.tag[lang]}
+                        </span>
+                      </div>
+                      <div className="mt-5 flex items-baseline justify-between gap-4">
+                        <h3 className="font-display text-xl tracking-tight text-foreground">{p.title[lang]}</h3>
+                        {p.year && <span className="text-[10px] tracking-[0.2em] text-muted-foreground">{p.year}</span>}
+                      </div>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description[lang]}</p>
+                    </>
+                  );
+                  return p.url ? (
+                    <a href={p.url} target="_blank" rel="noreferrer" className={cls}>{inner}</a>
+                  ) : (
+                    <div className={cls}>{PROJECT_INNER_MARKER}</div>
+                  );
+                })()}
                   <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-elevated">
                     {p.image ? (
                       <img src={p.image} alt={p.title[lang]} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
