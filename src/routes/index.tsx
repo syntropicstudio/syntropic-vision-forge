@@ -324,7 +324,6 @@ function Footer() {
       </div>
       <div className="mx-auto max-w-7xl px-6 mt-14 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <span>{t("footer_rights")}</span>
-        <span className="font-mono">SYNTROPIC / STUDIO</span>
       </div>
     </footer>
   );
