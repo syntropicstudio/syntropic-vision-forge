@@ -10,7 +10,18 @@ const dict = {
     nav_work: "Co tvoříme",
     nav_process: "Jak to funguje",
     nav_about: "O nás",
+    nav_projects: "Projekty",
+    nav_reviews: "Recenze",
     nav_contact: "Kontakt",
+
+    projects_eyebrow: "Projekty",
+    projects_title: "Vybrané realizace",
+    projects_text: "Ukázka projektů, na kterých jsme pracovali. Každé řešení bylo navrženo přesně podle potřeb konkrétního klienta.",
+    projects_view: "Zobrazit",
+
+    reviews_eyebrow: "Recenze",
+    reviews_title: "Co o nás říkají klienti",
+    reviews_text: "Zpětná vazba od firem, se kterými jsme spolupracovali.",
     cta_start: "Začít konzultací",
     cta_secondary: "Co tvoříme",
 
