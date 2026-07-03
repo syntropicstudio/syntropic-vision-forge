@@ -336,6 +336,36 @@ function Footer() {
 
 function Projects() {
   const { t, lang } = useI18n();
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [imgIndex, setImgIndex] = useState(0);
+  const active = projects.find((p) => p.id === activeId) ?? null;
+  const images = active?.images ?? [];
+
+  const openProject = (id: string) => {
+    setActiveId(id);
+    setImgIndex(0);
+  };
+  const close = () => setActiveId(null);
+  const prev = () => setImgIndex((i) => (images.length ? (i - 1 + images.length) % images.length : 0));
+  const next = () => setImgIndex((i) => (images.length ? (i + 1) % images.length : 0));
+
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, images.length]);
+
   return (
     <section id="projects" className="relative py-28 sm:py-36 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
@@ -350,42 +380,169 @@ function Projects() {
             </Reveal>
           </div>
           <div className="md:col-span-7 grid sm:grid-cols-2 gap-4">
-            {projects.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80}>
-                {(() => {
-                  const cls = "card-premium card-premium-hover p-5 h-full group block";
-                  const inner = (
-                    <>
-                      <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-elevated">
-                        {p.image ? (
-                          <img src={p.image} alt={p.title[lang]} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,hsl(var(--foreground)/0.08),transparent_60%)]">
-                            <LogoMark className="h-16 w-16 text-foreground/40" />
-                          </div>
-                        )}
-                        <span className="absolute top-3 left-3 text-[10px] tracking-[0.2em] uppercase text-muted-foreground bg-background/70 backdrop-blur px-2 py-1 rounded-full border border-border">
-                          {p.tag[lang]}
+            {projects.map((p, i) => {
+              const cover = p.images?.[0];
+              const count = p.images?.length ?? 0;
+              return (
+                <Reveal key={p.id} delay={i * 80}>
+                  <button
+                    type="button"
+                    onClick={() => openProject(p.id)}
+                    className="card-premium card-premium-hover p-5 h-full group block text-left w-full"
+                    aria-label={p.title[lang]}
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-elevated">
+                      {cover ? (
+                        <img src={cover} alt={p.title[lang]} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_30%_20%,hsl(var(--foreground)/0.08),transparent_60%)]">
+                          <LogoMark className="h-16 w-16 text-foreground/40" />
+                        </div>
+                      )}
+                      <span className="absolute top-3 left-3 text-[10px] tracking-[0.2em] uppercase text-muted-foreground bg-background/70 backdrop-blur px-2 py-1 rounded-full border border-border">
+                        {p.tag[lang]}
+                      </span>
+                      {count > 1 && (
+                        <span className="absolute top-3 right-3 text-[10px] tracking-wider text-foreground bg-background/70 backdrop-blur px-2 py-1 rounded-full border border-border">
+                          {count} ★
                         </span>
-                      </div>
-                      <div className="mt-5 flex items-baseline justify-between gap-4">
-                        <h3 className="font-display text-xl tracking-tight text-foreground">{p.title[lang]}</h3>
-                        {p.year && <span className="text-[10px] tracking-[0.2em] text-muted-foreground">{p.year}</span>}
-                      </div>
-                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description[lang]}</p>
-                    </>
-                  );
-                  return p.url ? (
-                    <a href={p.url} target="_blank" rel="noreferrer" className={cls}>{inner}</a>
-                  ) : (
-                    <div className={cls}>{inner}</div>
-                  );
-                })()}
-              </Reveal>
-            ))}
+                      )}
+                    </div>
+                    <div className="mt-5 flex items-baseline justify-between gap-4">
+                      <h3 className="font-display text-xl tracking-tight text-foreground">{p.title[lang]}</h3>
+                      {p.year && <span className="text-[10px] tracking-[0.2em] text-muted-foreground">{p.year}</span>}
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.description[lang]}</p>
+                    <div className="mt-4 inline-flex items-center gap-1.5 text-xs text-foreground/80 group-hover:text-foreground transition-colors">
+                      {t("projects_view")}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="transition-transform group-hover:translate-x-0.5">
+                        <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </button>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </div>
+
+      {active && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-background/85 backdrop-blur-md animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          onClick={close}
+        >
+          <div
+            className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-border bg-background shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={close}
+              aria-label={t("projects_close")}
+              className="absolute top-4 right-4 z-10 h-9 w-9 rounded-full border border-border bg-background/80 backdrop-blur flex items-center justify-center text-foreground hover:bg-secondary transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            <div className="relative w-full aspect-[16/9] bg-elevated border-b border-border overflow-hidden">
+              {images.length > 0 ? (
+                <>
+                  <img
+                    key={imgIndex}
+                    src={images[imgIndex]}
+                    alt={`${active.title[lang]} – ${imgIndex + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                  {images.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={prev}
+                        aria-label={t("projects_prev")}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border border-border bg-background/80 backdrop-blur flex items-center justify-center text-foreground hover:bg-secondary transition-colors"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                          <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={next}
+                        aria-label={t("projects_next")}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border border-border bg-background/80 backdrop-blur flex items-center justify-center text-foreground hover:bg-secondary transition-colors"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                          <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[11px] tracking-wider text-foreground bg-background/80 backdrop-blur px-3 py-1 rounded-full border border-border">
+                        {imgIndex + 1} {t("projects_image_of")} {images.length}
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center px-6">
+                  <LogoMark className="h-16 w-16 text-foreground/40" />
+                  <p className="text-sm text-muted-foreground max-w-sm">{t("projects_no_images")}</p>
+                </div>
+              )}
+            </div>
+
+            {images.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto p-4 border-b border-border">
+                {images.map((src, k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    onClick={() => setImgIndex(k)}
+                    className={`shrink-0 h-16 w-24 rounded-md overflow-hidden border transition-all ${
+                      k === imgIndex ? "border-foreground opacity-100" : "border-border opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img src={src} alt="" className="h-full w-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="p-6 sm:p-8">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                  {active.tag[lang]}
+                </span>
+                {active.year && (
+                  <span className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground">{active.year}</span>
+                )}
+              </div>
+              <h3 className="mt-4 font-display text-3xl sm:text-4xl tracking-tight text-foreground">
+                {active.title[lang]}
+              </h3>
+              <p className="mt-4 text-muted-foreground leading-relaxed max-w-2xl">
+                {active.description[lang]}
+              </p>
+              {active.url && (
+                <a
+                  href={active.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-foreground/90 transition-colors"
+                >
+                  {t("projects_open_site")}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+                    <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
