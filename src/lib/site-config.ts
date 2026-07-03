@@ -66,6 +66,49 @@ export type Review = {
   rating?: number; // 1–5
 };
 
+// ---- O nás / About -------------------------------------------------------
+export type AboutPerson = {
+  name: string;
+  role: { cs: string; en: string };
+  bio: { cs: string; en: string };
+  ico: string;
+  initials: string;
+  /** Volitelná fotografie. Pokud není vyplněna, zobrazí se iniciály. */
+  photo?: string;
+};
+
+export const aboutPeople: AboutPerson[] = [
+  {
+    name: "Martin Páral",
+    role: { cs: "Zakladatel SyntropicStudio", en: "Founder of SyntropicStudio" },
+    bio: {
+      cs: "Nadšenec do technologií, digitálních řešení a moderního webového vývoje.",
+      en: "Technology enthusiast focused on digital solutions and modern web development.",
+    },
+    ico: "[DOPLNIT IČO]",
+    initials: "MP",
+  },
+  {
+    name: "Lukáš Kořenek",
+    role: { cs: "Zakladatel SyntropicStudio", en: "Founder of SyntropicStudio" },
+    bio: {
+      cs: "Nadšenec do technologií, automatizací a chytrých digitálních systémů.",
+      en: "Technology enthusiast focused on automation and smart digital systems.",
+    },
+    ico: "[DOPLNIT IČO]",
+    initials: "LK",
+  },
+];
+
+// ---- Recenze / Reviews -----------------------------------------------------
+export type Review = {
+  id: string;
+  name: string;
+  role: { cs: string; en: string };
+  quote: { cs: string; en: string };
+  rating?: number; // 1–5
+};
+
 export const reviews: Review[] = [
   {
     id: "r1",
