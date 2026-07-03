@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { LogoMark } from "./Logo";
+import { sectionToggles } from "@/lib/site-config";
 
-const sections = [
+const baseSections = [
   { id: "home", key: "nav_home" as const },
   { id: "work", key: "nav_work" as const },
   { id: "process", key: "nav_process" as const },
+  { id: "projects", key: "nav_projects" as const, flag: "showProjects" as const },
+  { id: "reviews", key: "nav_reviews" as const, flag: "showReviews" as const },
   { id: "about", key: "nav_about" as const },
   { id: "contact", key: "nav_contact" as const },
 ];
+
+const sections = baseSections.filter(
+  (s) => !("flag" in s) || sectionToggles[s.flag as keyof typeof sectionToggles],
+);
 
 export function Nav() {
   const { t, lang, setLang } = useI18n();
