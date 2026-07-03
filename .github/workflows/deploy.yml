@@ -36,12 +36,13 @@ jobs:
         run: |
           if [ -f "dist/index.html" ]; then
             cp dist/index.html dist/404.html
+            touch dist/.nojekyll
             echo "BUILD_OUTPUT=dist" >> $GITHUB_ENV
-          elif [ -f ".output/public/index.html" ]; then
-            cp .output/public/index.html .output/public/404.html
-            echo "BUILD_OUTPUT=.output/public" >> $GITHUB_ENV
           else
-            echo "ERROR: index.html not found" && find . -name "index.html" -not -path "*/node_modules/*" && exit 1
+            echo "ERROR: dist/index.html not found"
+            find . -not -path "*/node_modules/*" -not -path "*/.git/*" -name "*.html" | sort
+            find . -not -path "*/node_modules/*" -not -path "*/.git/*" -name "*.js" -path "*/dist/*" | head -20
+            exit 1
           fi
 
       - name: Upload Pages artifact
