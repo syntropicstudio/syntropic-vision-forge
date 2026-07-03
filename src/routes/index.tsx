@@ -378,7 +378,7 @@ function Projects() {
                   return p.url ? (
                     <a href={p.url} target="_blank" rel="noreferrer" className={cls}>{inner}</a>
                   ) : (
-                    <div className={cls}>{PROJECT_INNER_MARKER}</div>
+                    <div className={cls}>{inner}</div>
                   );
                 })()}
               </Reveal>
