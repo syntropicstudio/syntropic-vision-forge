@@ -77,7 +77,7 @@ const dict = {
     contact_eyebrow: "Kontakt",
     contact_title: "Máte nápad? Začněme konzultací.",
     contact_text: "Ať už potřebujete nový web, digitální nástroj, aplikaci nebo automatizaci, napište nám. Společně zjistíme, jaké řešení bude dávat největší smysl.",
-    contact_cta: "Napsat na syntropicstudio26@gmail.com",
+    contact_cta: "Kontaktovat SyntropicStudio",
 
     footer_tagline: "Webové stránky, digitální nástroje, aplikace a automatizace na míru.",
     footer_rights: "© SyntropicStudio. Všechna práva vyhrazena.",
@@ -155,7 +155,7 @@ const dict = {
     contact_eyebrow: "Contact",
     contact_title: "Have an idea? Let's start with a consultation.",
     contact_text: "Whether you need a new website, a digital tool, an application or automation, contact us. Together, we will find the solution that makes the most sense.",
-    contact_cta: "Email syntropicstudio26@gmail.com",
+    contact_cta: "Contact SyntropicStudio",
 
     footer_tagline: "Custom websites, digital tools, applications and automation.",
     footer_rights: "© SyntropicStudio. All rights reserved.",
