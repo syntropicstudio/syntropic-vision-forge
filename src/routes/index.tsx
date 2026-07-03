@@ -15,7 +15,6 @@ export const Route = createFileRoute("/")({
 });
 
 const MAIL = "mailto:syntropicstudio26@gmail.com";
-const EMAIL = "syntropicstudio26@gmail.com";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -284,10 +283,7 @@ function Contact() {
             href={MAIL}
             className="group mt-12 inline-flex items-center gap-3 rounded-full bg-foreground text-background px-7 py-4 text-sm font-medium hover:bg-foreground/90 transition-colors"
           >
-            <div className="text-left">
-              <span className="block leading-tight">{t("contact_cta")}</span>
-              <span className="block text-xs opacity-70 font-normal leading-tight">{EMAIL}</span>
-            </div>
+            <span>{t("contact_cta")}</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="transition-transform group-hover:translate-x-0.5">
               <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
