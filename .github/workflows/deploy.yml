@@ -32,23 +32,20 @@ jobs:
         env:
           BUILD_GITHUB_PAGES: "true"
 
-      - name: Create 404.html for SPA routing
+      - name: Verify build output
         run: |
-          if [ -f "dist/index.html" ]; then
-            cp dist/index.html dist/404.html
-            touch dist/.nojekyll
-            echo "BUILD_OUTPUT=dist" >> $GITHUB_ENV
-          else
-            echo "ERROR: dist/index.html not found"
-            find . -not -path "*/node_modules/*" -not -path "*/.git/*" -name "*.html" | sort
-            find . -not -path "*/node_modules/*" -not -path "*/.git/*" -name "*.js" -path "*/dist/*" | head -20
+          if [ ! -f "dist/index.html" ]; then
+            echo "ERROR: dist/index.html not found. Build output:"
+            find dist -type f 2>/dev/null | sort || echo "(dist/ empty or missing)"
             exit 1
           fi
+          echo "Build output OK:"
+          find dist -type f | sort
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.BUILD_OUTPUT }}
+          path: dist
 
   deploy:
     environment:
