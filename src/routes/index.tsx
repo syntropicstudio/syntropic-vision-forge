@@ -15,6 +15,7 @@ export const Route = createFileRoute("/")({
 });
 
 const MAIL = "mailto:syntropicstudio26@gmail.com";
+const EMAIL = "syntropicstudio26@gmail.com";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
