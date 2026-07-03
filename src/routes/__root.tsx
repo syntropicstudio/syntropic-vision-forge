@@ -123,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "SyntropicStudio",
           url: "https://syntropic-vision-forge.lovable.app/",
           logo: "https://syntropic-vision-forge.lovable.app/syntropic-mark.png",
-          email: "syntropicstudio26@gmail.com",
+          email: "info@syntropicstudio.cz",
           description: "Digitální studio tvořící weby, aplikace a automatizace na míru.",
           founder: [
             { "@type": "Person", name: "Martin Páral" },

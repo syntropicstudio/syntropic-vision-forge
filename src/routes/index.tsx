@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
   ),
 });
 
-const MAIL = "mailto:syntropicstudio26@gmail.com";
+const MAIL = "mailto:info@syntropicstudio.cz";
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -309,7 +309,7 @@ function Footer() {
           </p>
           <a href={MAIL} className="mt-6 inline-flex items-center gap-2 text-sm text-foreground hover:text-muted-foreground transition-colors">
             <span className="text-muted-foreground text-xs uppercase tracking-[0.18em]">{t("email_label")}:</span>
-            syntropicstudio26@gmail.com
+            info@syntropicstudio.cz
           </a>
         </div>
         {aboutPeople.map((p) => (
