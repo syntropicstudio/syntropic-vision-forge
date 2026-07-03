@@ -33,10 +33,10 @@ function spaHtmlPlugin(): Plugin {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" />
-    ${css ? `<link rel="stylesheet" href="${base}assets/${css}" />` : ""}
+    ${css ? `<link rel="stylesheet" href="${base}${css}" />` : ""}
   </head>
   <body>
-    <script type="module" src="${base}assets/${entry}"></script>
+    <script type="module" src="${base}${entry}"></script>
   </body>
 </html>`;
       this.emitFile({ type: "asset", fileName: "index.html", source: html });
