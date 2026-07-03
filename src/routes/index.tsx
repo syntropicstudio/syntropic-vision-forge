@@ -67,7 +67,7 @@ function Hero() {
         <Reveal delay={360}>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <a
-              href={MAIL}
+              href="#contact"
               className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-6 py-3 text-sm font-medium hover:bg-foreground/90 transition-colors"
             >
               {t("cta_start")}
