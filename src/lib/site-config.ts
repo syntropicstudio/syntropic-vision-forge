@@ -74,8 +74,8 @@ export const aboutPeople: AboutPerson[] = [
     name: "Martin Páral",
     role: { cs: "Zakladatel SyntropicStudio", en: "Founder of SyntropicStudio" },
     bio: {
-      cs: "Nadšenec do technologií, digitálních řešení a moderního webového vývoje.",
-      en: "Technology enthusiast focused on digital solutions and modern web development.",
+      cs: "Kvalitní digitální řešení nevznikají jen dobrým kódem, ale především porozuměním lidem a jejich potřebám. Proto navrhuji weby, aplikace a automatizace, které spojují eleganci, funkčnost a smysl pro detail.\n\n\n\n\nBaví mě hledat nové cesty, přicházet s promyšlenými nápady a převádět složité problémy do jednoduchých a intuitivních řešení. Práce s digitálními produkty by měla věci nejen zefektivnit a zjednodušit, ale měla by být také příjemná.\n\nVěřím, že právě v detailech vzniká rozdíl mezi řešením, které jen funguje, a řešením, které lidé skutečně rádi používají.",
+      en: "Quality digital solutions aren't just about good code, but primarily about understanding people and their needs. That's why I design websites, applications, and automations that combine elegance, functionality, and attention to detail.\n\n\n\n\nI enjoy finding new paths, coming up with thoughtful ideas, and translating complex problems into simple and intuitive solutions. Working with digital products should not only make things more efficient and simple but should also be pleasant.\n\nI believe it's in the details that the difference arises between a solution that just works and a solution that people actually love to use.",
     },
     ico: "24362794",
     initials: "MP",
