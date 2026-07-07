@@ -71,7 +71,7 @@ const dict = {
     about_martin_role: "Zakladatel SyntropicStudio",
     about_martin_bio: "Nadšenec do technologií, digitálních řešení a moderního webového vývoje.",
     about_lukas_role: "Zakladatel SyntropicStudio",
-    about_lukas_bio: "Nadšenec do technologií, automatizací a chytrých digitálních systémů.",
+    about_lukas_bio: "V SyntropicStudio propojuji praktické zkušenosti z IT s lidským pohledem na potřeby klienta. Baví mě hledat jednoduchá a funkční řešení tam, kde technologie mohou ušetřit čas, zpřehlednit práci nebo pomoct firmě lépe se prezentovat. Věřím, že dobrý web, aplikace nebo automatizace nemají být složité — mají být srozumitelné, promyšlené a užitečné v reálném provozu. Ke každému projektu proto přistupuji tak, abych nejdřív pochopil jeho smysl a až potom hledal nejlepší cestu k výsledku.",
     ico_label: "IČO",
 
     contact_eyebrow: "Kontakt",

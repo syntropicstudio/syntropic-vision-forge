@@ -246,11 +246,7 @@ function About() {
                     <div className="text-xs text-muted-foreground mt-1 uppercase tracking-[0.16em]">{p.role[lang]}</div>
                   </div>
                 </div>
-                <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{p.bio[lang]}</p>
-                <div className="mt-6 pt-6 border-t border-border flex items-center justify-between text-xs">
-                  <span className="text-muted-foreground uppercase tracking-[0.16em]">{t("ico_label")}</span>
-                  <span className="font-mono text-foreground/80">{p.ico}</span>
-                </div>
+                <p className="mt-6 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{p.bio[lang]}</p>
               </div>
             </Reveal>
           ))}
