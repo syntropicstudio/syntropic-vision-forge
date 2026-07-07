@@ -77,7 +77,7 @@ export const aboutPeople: AboutPerson[] = [
       cs: "Nadšenec do technologií, digitálních řešení a moderního webového vývoje.",
       en: "Technology enthusiast focused on digital solutions and modern web development.",
     },
-    ico: "DOPLŇTE_IČO_MARTIN",
+    ico: "24362794",
     initials: "MP",
   },
   {
