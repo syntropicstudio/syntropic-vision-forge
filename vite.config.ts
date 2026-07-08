@@ -51,7 +51,7 @@ function spaHtmlPlugin(): Plugin {
 export default isGitHubPages
   ? defineViteConfig({
       root: __dirname,
-      base: "/syntropic-vision-forge/",
+      base: "/",
       plugins: [react(), tailwindcss(), tsconfigPaths(), spaHtmlPlugin()],
       build: {
         outDir: resolve(__dirname, "dist"),
