@@ -32,7 +32,7 @@ const dict = {
     cta_secondary: "Co tvoříme",
 
     hero_eyebrow: "Digitální studio",
-    hero_title: "Tvoříme digitální řešení, která posouvají firmy dál.",
+    hero_title: "Tvoříme digitální řešení, která posouvají firmy dál",
     hero_sub: "Jsme SyntropicStudio. Pomáháme firmám s tvorbou webových stránek, digitálních nástrojů, aplikací a automatizací na míru.",
     hero_extra: "Začínáme tam, kde běžné šablony končí. Navrhujeme a stavíme řešení, která dávají smysl pro váš byznys, procesy i zákazníky.",
 
@@ -49,7 +49,7 @@ const dict = {
     work_4_d: "Automatizace opakujících se procesů, propojení nástrojů a tvorba systémů, které šetří čas i energii.",
 
     proc_eyebrow: "Proces",
-    proc_title: "Jednoduchý proces. Promyšlený výsledek.",
+    proc_title: "Jednoduchý proces. Promyšlený výsledek",
     proc_1_t: "První konzultace",
     proc_1_d: "Nejprve pochopíme váš záměr, cíle, aktuální situaci a to, co má nové řešení skutečně přinést.",
     proc_2_t: "Návrh",
@@ -66,7 +66,7 @@ const dict = {
     why_v4: "Díváme se na projekt jako na začátek dlouhodobého růstu.",
 
     about_eyebrow: "O nás",
-    about_title: "Jsme dva zakladatelé, kteří staví digitální řešení s nadšením i přesností.",
+    about_title: "Jsme dva zakladatelé, kteří staví digitální řešení s nadšením i přesností",
     about_text: "SyntropicStudio tvoří Martin Páral a Lukáš Kořenek. Jsme zakladatelé, nadšenci do technologií a lidé, kteří chtějí firmám pomáhat tvořit smysluplná digitální řešení. Spojujeme moderní přístup, cit pro detail a chuť hledat řešení, která nejsou jen hezká na pohled, ale hlavně užitečná v praxi.",
     about_martin_role: "Zakladatel SyntropicStudio",
     about_martin_bio: "Nadšenec do technologií, digitálních řešení a moderního webového vývoje.",
@@ -75,7 +75,7 @@ const dict = {
     ico_label: "IČO",
 
     contact_eyebrow: "Kontakt",
-    contact_title: "Máte nápad? Začněme konzultací.",
+    contact_title: "Máte nápad? Začněme konzultací",
     contact_text: "Ať už potřebujete nový web, digitální nástroj, aplikaci nebo automatizaci, napište nám. Společně zjistíme, jaké řešení bude dávat největší smysl.",
     contact_cta: "Kontaktovat SyntropicStudio",
 
