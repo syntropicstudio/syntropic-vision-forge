@@ -16,35 +16,71 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const isGitHubPages = process.env.BUILD_GITHUB_PAGES === "true";
 
 // Generates a minimal index.html at build time so no committed file is needed.
+// Generates a minimal index.html at build time so no committed file is needed.
 function spaHtmlPlugin(): Plugin {
   return {
     name: "spa-html",
     apply: "build",
     generateBundle(_, bundle) {
-      const entry = Object.keys(bundle).find((k) => bundle[k].type === "chunk" && (bundle[k] as any).isEntry);
+      const entry = Object.keys(bundle).find(
+        (k) => bundle[k].type === "chunk" && (bundle[k] as any).isEntry
+      );
+
       const css = Object.keys(bundle).find((k) => k.endsWith(".css"));
       const base = "/";
+
       const html = `<!DOCTYPE html>
 <html lang="cs">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>SyntropicStudio — Digitální řešení na míru</title>
+    <meta name="description" content="Tvoříme moderní weby, digitální nástroje, aplikace a automatizace na míru pro firmy, které chtějí fungovat chytřeji." />
+    <link rel="canonical" href="https://www.syntropicstudio.cz/" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:title" content="SyntropicStudio — Digitální řešení na míru" />
+    <meta property="og:description" content="Tvoříme moderní weby, digitální nástroje, aplikace a automatizace na míru pro firmy, které chtějí fungovat chytřeji." />
+    <meta property="og:url" content="https://www.syntropicstudio.cz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.syntropicstudio.cz/syntropic-mark.png" />
+
+    <script type="application/ld+json">
+${JSON.stringify(
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "SyntropicStudio",
+    url: "https://www.syntropicstudio.cz/",
+    logo: "https://www.syntropicstudio.cz/syntropic-mark.png",
+    description:
+      "SyntropicStudio tvoří moderní weby, digitální nástroje, aplikace a automatizace na míru.",
+  },
+  null,
+  2
+)}
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" />
     ${css ? `<link rel="stylesheet" href="${base}${css}" />` : ""}
   </head>
   <body>
-    <script type="module" src="${base}${entry}"></script>
+    ${entry ? `<script type="module" src="${base}${entry}"></script>` : ""}
   </body>
 </html>`;
+
       this.emitFile({ type: "asset", fileName: "index.html", source: html });
       this.emitFile({ type: "asset", fileName: "404.html", source: html });
       this.emitFile({ type: "asset", fileName: ".nojekyll", source: "" });
     },
   };
 }
+
 
 // For GitHub Pages: plain Vite SPA build (no SSR, no nitro)
 // For normal builds: Lovable's TanStack Start config with SSR + Cloudflare nitro
