@@ -23,7 +23,7 @@ function spaHtmlPlugin(): Plugin {
     generateBundle(_, bundle) {
       const entry = Object.keys(bundle).find((k) => bundle[k].type === "chunk" && (bundle[k] as any).isEntry);
       const css = Object.keys(bundle).find((k) => k.endsWith(".css"));
-      const base = "/syntropic-vision-forge/";
+      const base = "/";
       const html = `<!DOCTYPE html>
 <html lang="cs">
   <head>
